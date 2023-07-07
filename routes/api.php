@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\khleang\calenderController;
+use App\Http\Controllers\khleang\calenderCustome;
 use App\Http\Controllers\khleang\ChangePassController;
 use App\Http\Controllers\khleang\inboxController;
 use App\Http\Controllers\khleang\InboxCustome;
@@ -10,6 +12,7 @@ use App\Http\Controllers\khleang\noteCustome;
 use App\Http\Controllers\khleang\upload_type_Controller;
 use App\Http\Controllers\khleang\UserController;
 use App\Http\Controllers\khleang\UserCustome;
+use App\Models\khleang\inboxModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::resource('/upload_type',upload_type_Controller::class);
     Route::resource('/note',noteController::class);
     Route::resource('/user',UserController::class);
+    Route::resource('/calender',calenderController::class);
 
     // custome
     Route::put('/changepassword',[UserCustome::class,'changePass']);
@@ -39,6 +43,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/getalluser',[UserCustome::class,'getalluser']);
     Route::get('/getallnote',[UserCustome::class,'getallnote']);
     Route::get('/getallupload',[UserCustome::class,'getallupload']);
+    Route::get('/getallcalender',[UserCustome::class,'getallcalender']);
+
     // Delete All 
     Route::delete('/deleteAllNote/{id}',[noteCustome::class,'delete_allnote']);
 
@@ -46,4 +52,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::resource('/inbox',inboxController::class);
     Route::get('/getProfileImage/{id}',[InboxCustome::class,'getProfileImageByID']);
     Route::get('/getUser/{id}',[InboxCustome::class,'getUserByID']);
+        // get user , profile img by inbox id
+
+    // calender
+    Route::delete('/deletecalender/{id}',[calenderCustome::class,'deleteByID']);
 });

@@ -15,7 +15,12 @@ class AuthController extends Controller
         $user = User::create($req->all());
         // $user->password = $pass;
         // $user->save(); 
-        return $user;
+
+        $token = $user->createToken('authToken')->plainTextToken;
+        return response([
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
 
     // public function login(Request $req){

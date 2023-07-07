@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\khleang;
 
 use App\Http\Controllers\Controller;
+use App\Models\khleang\calenderModel;
 use App\Models\khleang\noteModel;
 use App\Models\khleang\UploadModel;
 use App\Models\User;
@@ -23,6 +24,11 @@ class UserCustome extends Controller
 
     public function getallupload(){
         $data = UploadModel::all();
+        return ($data);
+    }
+
+    public function getallcalender(){
+        $data = calenderModel::all();
         return ($data);
     }
 
